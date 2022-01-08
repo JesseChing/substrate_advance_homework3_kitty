@@ -24,6 +24,7 @@ export default function Kitties (props) {
   const [kittyHashes, setKittyHashes] = useState([]);
   const [kitties, setKitties] = useState([]);
   const [status, setStatus] = useState('');
+  const [kittyCount, setKittyCount] = useState(0);
 
   const subscribeKittyCnt = () => {
     let unsub = null;
@@ -32,8 +33,11 @@ export default function Kitties (props) {
       unsub = await api.query.kittyModule.kittyCnt(async cnt => {
         // Fetch all kitty keys
         const entries = await api.query.kittyModule.kitties.entries();
+        console.log("entries" + entries.length);
+        console.log(entries);
         const hashes = entries.map(convertToKittyHash);
         setKittyHashes(hashes);
+        setKittyCount(entries.length);
       });
     };
 
@@ -67,12 +71,12 @@ export default function Kitties (props) {
   useEffect(subscribeKittyCnt, [api, keyring]);
 
   return <Grid.Column width={16}>
-  <h1>Kitties</h1>
+  <h1>Kitties(总共{kittyCount}只)</h1>
   <KittyCards kitties={kitties} accountPair={accountPair} setStatus={setStatus}/>
   <Form style={{ margin: '1em 0' }}>
       <Form.Field style={{ textAlign: 'center' }}>
         <TxButton
-          accountPair={accountPair} label='Create Kitty' type='SIGNED-TX' setStatus={setStatus}
+          accountPair={accountPair} label='创建Kitty' type='SIGNED-TX' setStatus={setStatus}
           attrs={{
             palletRpc: 'kittyModule',
             callable: 'createKitty',

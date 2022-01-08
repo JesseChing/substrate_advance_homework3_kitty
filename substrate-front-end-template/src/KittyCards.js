@@ -21,16 +21,16 @@ const TransferModal = props => {
   };
 
   return <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}
-    trigger={<Button basic color='blue'>Transfer</Button>}>
-    <Modal.Header>Kitty Transfer</Modal.Header>
+    trigger={<Button basic color='blue'>转让</Button>}>
+    <Modal.Header>Kitty 转让</Modal.Header>
     <Modal.Content><Form>
       <Form.Input fluid label='Kitty ID' readOnly value={kitty.id}/>
-      <Form.Input fluid label='Receiver' placeholder='Receiver Address' onChange={formChange('target')}/>
+      <Form.Input fluid label='接收方地址' placeholder='请输入地址' onChange={formChange('target')}/>
     </Form></Modal.Content>
     <Modal.Actions>
-      <Button basic color='grey' onClick={() => setOpen(false)}>Cancel</Button>
+      <Button basic color='grey' onClick={() => setOpen(false)}>取消</Button>
       <TxButton
-        accountPair={accountPair} label='Transfer' type='SIGNED-TX' setStatus={setStatus}
+        accountPair={accountPair} label='转让' type='SIGNED-TX' setStatus={setStatus}
         onClick={confirmAndClose}
         attrs={{
           palletRpc: 'kittyModule',
@@ -60,16 +60,16 @@ const SetPrice = props => {
   };
 
   return <Modal onClose={() => setOpen(false)} onOpen={() => setOpen(true)} open={open}
-    trigger={<Button basic color='blue'>Set Price</Button>}>
-    <Modal.Header>Set Kitty Price</Modal.Header>
+    trigger={<Button basic color='blue'>设置价格</Button>}>
+    <Modal.Header>设置Kitty价格</Modal.Header>
     <Modal.Content><Form>
       <Form.Input fluid label='Kitty ID' readOnly value={kitty.id}/>
-      <Form.Input fluid label='Price' placeholder='Enter Price' onChange={formChange('target')}/>
+      <Form.Input fluid label='价格' placeholder='输入价格' onChange={formChange('target')}/>
     </Form></Modal.Content>
     <Modal.Actions>
-      <Button basic color='grey' onClick={ () => setOpen(false)}>Cancel</Button>
+      <Button basic color='grey' onClick={ () => setOpen(false)}>取消</Button>
       <TxButton
-        accountPair={accountPair} label='Set Price' type='SIGNED-TX' setStatus={setStatus}
+        accountPair={accountPair} label='设置价格' type='SIGNED-TX' setStatus={setStatus}
         onClick={confirmAndClose}
         attrs={{
           palletRpc: 'kittyModule',
@@ -91,7 +91,7 @@ const KittyCard = props => {
   const isSelf = accountPair.address === kitty.owner;
 
   return <Card>
-    { isSelf && <Label as='a' floating color='teal'>Mine</Label> }
+    { isSelf && <Label as='a' floating color='teal'>我的专属</Label> }
     <KittyAvatar dna={dna.toU8a()} />
     <Card.Content>
       <Card.Header style={{ fontSize: '1em', overflowWrap: 'break-word' }}>
@@ -102,13 +102,13 @@ const KittyCard = props => {
       </Card.Meta>
       <Card.Description>
         <p style={{ overflowWrap: 'break-word' }}>
-          Gender: {gender}
+          性别: {gender}
         </p>
         <p style={{ overflowWrap: 'break-word' }}>
-          Owner: {owner}
+          所有者: {owner}
         </p>
         <p style={{ overflowWrap: 'break-word' }}>
-          Price: {price}
+          价格: {price}
         </p>
       </Card.Description>
     </Card.Content>
