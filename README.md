@@ -1,2 +1,4 @@
 # substrate_advance_homework3_kitty
-substrate进阶课作业
+substrate进阶课第三课作业
+前段代码位于substrate-front-end-template目录
+后端代码位于substrate-node-template目录
